@@ -1,6 +1,7 @@
 package com.tacuri.controller;
 
 import com.tacuri.domain.dto.ErrorDto;
+import com.tacuri.exceptions.InternalErrorException;
 import com.tacuri.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,5 +28,10 @@ public class HandlerValidationController {
     error.getErrors().add(String.format("Validation error in field %s: %s", exception.getName(),
         exception.getMessage()));
     return error;
+  }
+
+  @ExceptionHandler(InternalErrorException.class)
+  ResponseEntity<Object> onInternalErrorException() {
+    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }

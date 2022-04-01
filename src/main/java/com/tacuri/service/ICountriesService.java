@@ -6,4 +6,7 @@ public interface ICountriesService {
 
   CountriesJpa getCountryById(Integer id);
 
+  void saveCountry(CountriesJpa country);
+
+  void deleteCountry(Integer id);
 }
