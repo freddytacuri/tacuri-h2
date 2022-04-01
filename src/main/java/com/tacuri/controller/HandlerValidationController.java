@@ -24,7 +24,7 @@ public class HandlerValidationController {
   ErrorDto onMethodArgumentNotValidException(MethodArgumentTypeMismatchException exception) {
     ErrorDto error = ErrorDto.builder().status(HttpStatus.BAD_REQUEST.value())
         .message("Bad request").build();
-    error.getErrors().add(String.format("Validation error on field %s: %s", exception.getName(),
+    error.getErrors().add(String.format("Validation error in field %s: %s", exception.getName(),
         exception.getMessage()));
     return error;
   }
